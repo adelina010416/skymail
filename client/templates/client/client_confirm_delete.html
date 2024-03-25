@@ -1,0 +1,14 @@
+{% extends 'mailing/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="mb-3">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="lead mb-4">Хотите удалить клиента {{ object.full_name }} ({{ object.email }})?</p>
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a href='{% url "client:my_clients" %}' class="btn btn-dark">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

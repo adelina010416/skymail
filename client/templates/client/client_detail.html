@@ -1,0 +1,29 @@
+{% extends 'mailing/base.html' %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'client:my_clients' %}" class="link-secondary mb-4">Назад</a>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <strong><p class="display-3 mb-5 mt-4">{{object.full_name}}</p></strong>
+        </div>
+        <div class="col-3">
+          <a href="{% url 'client:client_edit' object.pk %}" type="button" class="btn mt-5 btn-outline-primary">
+            Редактировать</a>
+          <a href="{% url 'client:client_delete' object.pk %}" type="button" class="btn mt-5 btn-outline-danger">
+            Удалить</a>
+        </div>
+    </div>
+</div>
+
+<div class="container text-start">
+    <div class="row justify-content-start">
+        <div class="col-8">
+            <h4 class="card-title pricing-card-title">{{object.email}}</h4>
+            <p class="lead text-muted mt-4">{{object.comment }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

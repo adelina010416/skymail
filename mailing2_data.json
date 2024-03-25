@@ -1,0 +1,78 @@
+[
+{
+  "model": "user_message.message",
+  "pk": 1,
+  "fields": {
+    "header": "Новая акция",
+    "body": "Спешите не упустите: наждачка для вашей жопы всего за полцены!"
+  }
+},
+{
+  "model": "user_message.message",
+  "pk": 2,
+  "fields": {
+    "header": "Распродажа!",
+    "body": "Отдаём просрочку со скидками до 2%!"
+  }
+},
+{
+  "model": "user_message.message",
+  "pk": 3,
+  "fields": {
+    "header": "С днём рождения нас!",
+    "body": "Наш культ царепоклонников празднует 20 лет!"
+  }
+},
+{
+  "model": "user_message.message",
+  "pk": 4,
+  "fields": {
+    "header": "go fuck;'.'",
+    "body": "gybnkm,./"
+  }
+},
+{
+  "model": "mailing.mail",
+  "pk": 1,
+  "fields": {
+    "message": 2,
+    "name": "Корм бомжей",
+    "start_time": "2024-03-20T17:00:56Z",
+    "frequency": "daily",
+    "status": "created"
+  }
+},
+{
+  "model": "mailing.mail",
+  "pk": 2,
+  "fields": {
+    "message": 1,
+    "name": "Развод лохов",
+    "start_time": "2024-03-19T17:03:13Z",
+    "frequency": "weekly",
+    "status": "created"
+  }
+},
+{
+  "model": "mailing.mail",
+  "pk": 3,
+  "fields": {
+    "message": 2,
+    "name": "очередная бабуйня",
+    "start_time": "2024-03-21T17:03:49Z",
+    "frequency": "monthly",
+    "status": "created"
+  }
+},
+{
+  "model": "mailing.mail",
+  "pk": 4,
+  "fields": {
+    "message": 3,
+    "name": "Повод открыть балтику 9",
+    "start_time": "2024-03-22T17:04:28Z",
+    "frequency": "daily",
+    "status": "created"
+  }
+}
+]

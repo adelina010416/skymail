@@ -1,0 +1,11 @@
+asgiref
+Django
+psycopg2
+sqlparse
+tzdata
+pillow
+pytils
+redis
+python-dotenv
+django-apscheduler
+apscheduler

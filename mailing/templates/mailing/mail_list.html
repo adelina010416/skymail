@@ -1,0 +1,29 @@
+{% extends 'mailing/base.html' %}
+
+{% load my_tags %}
+
+{% block content %}
+  {% for object in object_list %}
+    <div class="col-6 md-4">
+      <div class="card mb-4 box-shadow">
+        <div class="card-body">
+          <p><a href='{% url "mail:mail" object.pk %}' class="fw-bold text-decoration-none link-dark">
+            {{ object.name }}</a></p>
+          <p class="card-text">{{ object.message.header }}</p>
+          <p class="text-muted">{{ object.message.body |slice:":65" }}...</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href="{% url 'mail:edit_mail' object.pk %}" type="button" class="btn btn-sm btn-outline-primary">
+                Редактировать</a>
+              <a href="{% url 'mail:delete_mail' object.pk %}" type="button" class="btn btn-sm btn-outline-danger">
+                Удалить</a>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
+
+{% endblock %}

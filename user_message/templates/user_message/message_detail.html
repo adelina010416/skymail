@@ -1,0 +1,27 @@
+{% extends 'mailing/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+<a href="{% url 'message:all_messages' %}" class="text-muted">Назад</a>
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <strong><h1 class="display-4 mb-5">{{object.header}}</h1></strong>
+        </div>
+        <div class="col-3">
+          <a href="{% url 'message:edit_message' object.pk %}" type="button" class="btn mt-3 btn-outline-primary">
+            Редактировать</a>
+          <a href="{% url 'message:delete_message' object.pk %}" type="button" class="btn mt-3 btn-outline-danger">
+            Удалить</a>
+        </div>
+    </div>
+</div>
+
+<div class="container text-start">
+    <div class="row justify-content-start">
+        <div class="col-8">
+            <h3 class="card-title pricing-card-title">{{object.body}}</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

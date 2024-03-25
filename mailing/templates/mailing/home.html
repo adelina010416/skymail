@@ -1,0 +1,42 @@
+{% extends 'mailing/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Рассылки для бизнеса SkyMail</h1>
+      <p class="lead text-muted">Сервис email-рассылок. Отправляйте письма, общайтесь с клиентами,
+          формируйте имидж и растите продажи. Здесь вас ждут:</p>
+      <ul class="list-unstyled">
+        <li class="text-muted">{{ mailing_amount }} рассылок (из них {{ active_mailing_amount }} активных)</li>
+        <li class="text-muted">{{ clients_amount }} уникальных клиентов для рассылок</li>
+        <li class="text-muted">Множество советов и мастер-классов по привлечению клиентов в нашем блоге</li>
+      </ul>
+      {% if not user.is_authenticated %}
+        <p>
+          <a href="{% url 'user:login' %}" class="btn btn-primary my-2">Начать рассылку!</a>
+        </p>
+      {% endif %}
+    </div>
+  </section>
+<hr>
+  {% for object in object_list %}
+    <div class="md-4">
+      <div class="card mb-4 box-shadow">
+        {% if object.image %}
+          <img class="img float-start" src="{% mediapath object.image %}" width="500" alt="Card image cap">
+        {% endif %}
+        <div class="card-body">
+          <p class="fw-bold">{{ object.title }}</p>
+          <p class="card-text">{{ object.content }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">{{ object.view_count }} просмотров</small>
+            <small class="text-muted">{{ object.creation_date }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
+
+{% endblock %}
