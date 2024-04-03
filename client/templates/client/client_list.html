@@ -2,38 +2,38 @@
 
 {% block content %}
 
-  <div class="container">
+<div class="container">
     <a href="{% url 'client:create_client' %}" class="btn btn-outline-primary btn-lg mb-4">Добавить клиента</a>
-  </div>
+</div>
 
-  {% if object_list %}
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">ФИО</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Комментарий</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for object in object_list %}
+{% if object_list %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">ФИО</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Комментарий</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
 
-          <tr>
-            <td>
-              <a href="{% url 'client:client'  object.pk %}" class="link-dark">{{ object.full_name  |slice:":50" }}...</a>
-            </td>
-            <td>{{ object.email  |slice:":50" }}...</td>
-            <td>{{ object.comment  |slice:":50" }}...</td>
-            <td>
-              <a href="{% url 'client:client_edit' object.pk %}" class="btn btn-outline-primary btn-sm">Редактировать</a>
-              <a href="{% url 'client:client_delete' object.pk %}" class="btn btn-outline-danger btn-sm">Удалить</a>
-            </td>
-          </tr>
+    <tr>
+        <td>
+            <a href="{% url 'client:client'  object.pk %}" class="link-dark">{{ object.full_name |slice:":50" }}...</a>
+        </td>
+        <td>{{ object.email |slice:":50" }}...</td>
+        <td>{{ object.comment |slice:":50" }}...</td>
+        <td>
+            <a href="{% url 'client:client_edit' object.pk %}" class="btn btn-outline-primary btn-sm">Редактировать</a>
+            <a href="{% url 'client:client_delete' object.pk %}" class="btn btn-outline-danger btn-sm">Удалить</a>
+        </td>
+    </tr>
 
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p class="lead text-muted">У вас пока нет клиентов, но вы можете их добавить, используя кнопку выше!</p>
-  {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="lead text-muted">У вас пока нет клиентов, но вы можете их добавить, используя кнопку выше!</p>
+{% endif %}
 {% endblock %}

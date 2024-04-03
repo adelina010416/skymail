@@ -2,23 +2,23 @@
 {% load my_tags %}
 
 {% block content %}
-  {% for object in object_list %}
-    <div class="md-4">
-      <div class="card mb-4 box-shadow">
+{% for object in object_list %}
+<div class="md-4">
+    <div class="card mb-4 box-shadow">
         {% if object.image %}
-          <img class="img float-start" src="{% mediapath object.image %}" width="500" alt="Card image cap">
+        <img class="img float-start" src="{% mediapath object.image %}" width="500" alt="Card image cap">
         {% endif %}
         <div class="card-body">
-          <p class="fw-bold"><a href="{% url 'blog:post' object.pk %}" class="link-dark">{{ object.title }}</a></p>
-          <p class="card-text">{{ object.content }}</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <small class="text-muted">Просмотров: {{ object.view_count }}</small>
-            <small class="text-muted"><em>{{ object.creation_date }}</em></small>
-          </div>
+            <p class="fw-bold"><a href="{% url 'blog:post' object.pk %}" class="link-dark">{{ object.title }}</a></p>
+            <p class="card-text">{{ object.content }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Просмотров: {{ object.view_count }}</small>
+                <small class="text-muted"><em>{{ object.creation_date }}</em></small>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-  {% endfor %}
+{% endfor %}
 
 {% endblock %}

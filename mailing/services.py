@@ -7,9 +7,6 @@ from attempt_report.models import Attempt
 from config import settings
 
 
-# from config.urls import scheduler
-
-
 def do_mailing(mail, clients, user):
     try:
         server_response = send_mail(

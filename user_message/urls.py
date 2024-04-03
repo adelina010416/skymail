@@ -1,9 +1,9 @@
 from django.urls import path
-from user_message.views import *
+
 from user_message.apps import UserMessageConfig
+from user_message.views import *
 
 app_name = UserMessageConfig.name
-
 
 urlpatterns = [
     path('', MessageListView.as_view(), name='all_messages'),

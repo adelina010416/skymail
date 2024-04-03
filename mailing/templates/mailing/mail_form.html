@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <strong>Пожалуйста, обратите внимание, что формат даты старта рассылки должен
-                        совпадать с "дд.мм.гггг чч:мм:сс"</strong>
+                            совпадать с "дд.мм.гггг чч:мм:сс"</strong>
                     </div>
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -20,14 +20,13 @@
                 <div class="card-footer">
                     <button type="submit" class="p-2 btn btn-outline-primary">
                         {% if object %}
-                            Сохранить
+                        Сохранить
                         {% else %}
-                            Создать
+                        Создать
                         {% endif %}
                     </button>
                 </div>
             </div>
-
         </form>
     </div>
 </div>

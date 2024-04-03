@@ -18,12 +18,12 @@
 <div class="container text-start">
     <div class="row justify-content-start">
         <div class="col-4">
-          <img src="{% mediapath object.avatar %}" class="img-fluid float-start" alt="Product picture">
+            <img src="{% mediapath object.avatar %}" class="img-fluid float-start" alt="Product picture">
         </div>
         <div class="col-8">
-            <p>E-mail: {{ object.email  | default_if_none:'не указан' }}</p>
-            <p>Телефон: {{ object.phone  | default_if_none:'не указан' }}</p>
-            <p>Страна: {{ object.country  | default_if_none:'не указана' }}</p>
+            <p>E-mail: {{ object.email | default_if_none:'не указан' }}</p>
+            <p>Телефон: {{ object.phone | default_if_none:'не указан' }}</p>
+            <p>Страна: {{ object.country | default_if_none:'не указана' }}</p>
         </div>
     </div>
 </div>
