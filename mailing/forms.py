@@ -14,4 +14,4 @@ class MailForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Mail
-        exclude = ('status', )
+        exclude = ('status', 'owner', )

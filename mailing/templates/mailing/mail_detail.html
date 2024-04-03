@@ -2,17 +2,18 @@
 {% load my_tags %}
 
 {% block content %}
-<a href="{% url 'mail:my_mails' %}" class="text-muted">Назад</a>
 <div class="container">
     <div class="row">
         <div class="col-9">
             <strong><h1 class="display-4 mb-5">{{object.name}}</h1></strong>
         </div>
         <div class="col-3">
-          <a href="{% url 'mail:edit_mail' object.pk %}" type="button" class="btn mt-3 btn-outline-primary">
-            Редактировать</a>
-          <a href="{% url 'mail:delete_mail' object.pk %}" type="button" class="btn mt-3 btn-outline-danger">
-            Удалить</a>
+            {% if is_owner %}
+            <a href="{% url 'mail:edit_mail' object.pk %}" type="button" class="btn mt-3 btn-outline-primary">
+                Редактировать</a>
+            <a href="{% url 'mail:delete_mail' object.pk %}" type="button" class="btn mt-3 btn-outline-danger">
+                Удалить</a>
+            {% endif %}
         </div>
     </div>
 </div>

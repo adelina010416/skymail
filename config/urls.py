@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from apscheduler.schedulers.background import BackgroundScheduler
-from django.conf import settings
+from config import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -27,8 +27,9 @@ scheduler.add_jobstore(DjangoJobStore(), "default")
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mailing.urls', namespace='mail')),
-    path('about', include('blog.urls', namespace='blog')),
+    path('about/', include('blog.urls', namespace='blog')),
     path('user/', include('users.urls', namespace='user')),
     path('client/', include('client.urls', namespace='client')),
     path('message/', include('user_message.urls', namespace='message')),
+    path('report/', include('attempt_report.urls', namespace='report')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

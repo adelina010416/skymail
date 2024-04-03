@@ -1,0 +1,15 @@
+{% extends 'mailing/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="mb-3">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Хотите удалить отчёт "{{ object.mail.name }}" от {{ object.date_time }}?</p>
+            <button type="submit" class="p-2 btn btn-danger">Удалить</button>
+            <a href='{% url "report:reports" %}' class="btn btn-sm btn-block btn-light">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

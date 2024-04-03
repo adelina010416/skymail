@@ -1,0 +1,32 @@
+{% extends 'mailing/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+<a href="{% url 'blog:posts' %}" class="link-secondary mb-5">Назад</a>
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <strong><h1 class="display-4 mb-5">{{object.title}}</h1></strong>
+        </div>
+    </div>
+</div>
+
+<div class="container text-start">
+    <div class="row justify-content-start">
+        <div class="col-7">
+            <h5>{{object.content }}</h5>
+        </div>
+        <div class="col-5">
+            <img src="{% mediapath object.image %}" class="img-fluid float-start" alt="Product picture">
+        </div>
+    </div>
+    <div class="row justify-content-between mt-4">
+        <div class="col-4 text-start text-secondary">
+          Просмотров: {{ object.view_count }}
+        </div>
+        <div class="col-4 text-end text-secondary">
+            <em>Опубликовано {{ object.creation_date }}</em>
+        </div>
+    </div>
+</div>
+{% endblock %}

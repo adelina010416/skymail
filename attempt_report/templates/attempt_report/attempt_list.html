@@ -1,0 +1,34 @@
+{% extends 'mailing/base.html' %}
+
+{% block content %}
+
+  {% if object_list %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Рассылка</th>
+          <th scope="col">Дата</th>
+          <th scope="col">Статус</th>
+          <th scope="col">Ответ почтового сервера</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in object_list %}
+
+          <tr>
+            <td>{{ object.mail.name  |slice:":50" }}...</td>
+            <td>{{ object.date_time }}</td>
+            <td>{{ object.status }}</td>
+            <td>{{ object.mail_server_response  |slice:":50" }}...</td>
+            <td>
+              <a href="{% url 'report:delete_report' object.pk %}" class="btn btn-outline-danger btn-sm">Удалить</a>
+            </td>
+          </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="lead text-muted">У вас пока нет отчётов. Они появятся, когда вы запустите свою первую рассылку.</p>
+  {% endif %}
+{% endblock %}

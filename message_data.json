@@ -1,0 +1,56 @@
+[
+{
+  "model": "user_message.message",
+  "pk": 1,
+  "fields": {
+    "header": "Новая акция",
+    "body": "Спешите не упустите: наждачка для вашей жопы всего за полцены!",
+    "owner": null
+  }
+},
+{
+  "model": "user_message.message",
+  "pk": 2,
+  "fields": {
+    "header": "Распродажа!",
+    "body": "Отдаём просрочку со скидками до 2%!!!",
+    "owner": null
+  }
+},
+{
+  "model": "user_message.message",
+  "pk": 3,
+  "fields": {
+    "header": "С днём рождения нас!",
+    "body": "Наш культ царепоклонников празднует 20 лет!",
+    "owner": null
+  }
+},
+{
+  "model": "user_message.message",
+  "pk": 5,
+  "fields": {
+    "header": "go fuck;'.'",
+    "body": "я устал, я ухожу",
+    "owner": null
+  }
+},
+{
+  "model": "user_message.message",
+  "pk": 6,
+  "fields": {
+    "header": "Новая акция",
+    "body": "Спешите не упустите: наждачка для вашей жопы всего за полцены!",
+    "owner": 23
+  }
+},
+{
+  "model": "user_message.message",
+  "pk": 7,
+  "fields": {
+    "header": "go fuck;'.'",
+    "body": "я устал, я ухожу",
+    "owner": 23
+  }
+}
+]

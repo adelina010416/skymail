@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'client',
     'django_apscheduler',
     'user_message',
+    'attempt_report'
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,13 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
 
 DATETIME_FORMAT = '%d.%m.%Y %H:%M:%S'
+
+CASHES_ENABLED = True
+
+if CASHES_ENABLED:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": "redis://127.0.0.1:6379",
+        }
+    }

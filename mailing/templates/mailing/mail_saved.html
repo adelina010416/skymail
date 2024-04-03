@@ -1,0 +1,9 @@
+{% extends 'mailing/base.html' %}
+
+{% block content %}
+<a href="{% url 'mail:mails' %}" class="text-muted">Назад</a>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <p class="display-3">Готово!</p>
+    <p class="display-6">Теперь вы можете найти эту рассылку в разделе "Мои рассылки".</p>
+</div>
+{% endblock %}

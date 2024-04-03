@@ -1,0 +1,44 @@
+{% extends 'mailing/base.html' %}
+
+{% block content %}
+  {% if object_list %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ФИО</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Активных рассылок</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in object_list %}
+        {% if object.is_superuser %}
+          <tr class="table-danger">
+        {% elif object.is_staff %}
+           <tr class="table-success">
+        {% elif not object.is_active %}
+          <tr class="table-secondary">
+        {% else %}
+          <tr>
+        {% endif %}
+            <td>{{ object.last_name }} {{ object.first_name }}</td>
+            <td>{{ object.email  |slice:":50" }}...</td>
+            <td>{{ object.active_mail_amount }}</td>
+            <td>
+              {% if not object.is_superuser and not object.is_staff and object.is_active %}
+              <a href="{% url 'user:block_user' object.pk %}" class="btn btn-outline-danger btn-sm">Заблокировать</a>
+              {% endif %}
+            </td>
+          </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+<p><strong>Пояснение:</strong></p>
+<p class="text-danger"><strong>Красным</strong> выделен главный администратор сервиса</p>
+<p class="text-success"><strong>Зелёным</strong> выделены сотрудники сервиса</p>
+<p class="text-secondary"><strong>Серым</strong> выделены заблокированные и неактивные пользователи</p>
+  {% else %}
+    <p class="lead text-muted">У вас пока нет пользователей, ты никому не нужен.</p>
+  {% endif %}
+{% endblock %}

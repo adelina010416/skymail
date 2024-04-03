@@ -1,0 +1,92 @@
+[
+{
+  "model": "client.client",
+  "pk": 1,
+  "fields": {
+    "email": "zim.adelina@yandex.ru",
+    "full_name": "Зимина Аделина Алексеевна",
+    "comment": "мерзкая особа"
+  }
+},
+{
+  "model": "client.client",
+  "pk": 2,
+  "fields": {
+    "email": "adelinazimina040299@gmail.com",
+    "full_name": "Зимина Аделина",
+    "comment": "а эта ещё хуже"
+  }
+},
+{
+  "model": "client.client",
+  "pk": 5,
+  "fields": {
+    "email": "test@gmail.com",
+    "full_name": "test",
+    "comment": ""
+  }
+},
+{
+  "model": "client.client",
+  "pk": 6,
+  "fields": {
+    "email": "test1@mail.ru",
+    "full_name": "test1",
+    "comment": ""
+  }
+},
+{
+  "model": "client.client",
+  "pk": 7,
+  "fields": {
+    "email": "test2@mail.ru",
+    "full_name": "test2",
+    "comment": ""
+  }
+},
+{
+  "model": "client.client",
+  "pk": 8,
+  "fields": {
+    "email": "test3@mail.ru",
+    "full_name": "test3",
+    "comment": ""
+  }
+},
+{
+  "model": "client.client",
+  "pk": 10,
+  "fields": {
+    "email": "test@mail.ru",
+    "full_name": "test1",
+    "comment": ""
+  }
+},
+{
+  "model": "client.client",
+  "pk": 11,
+  "fields": {
+    "email": "fghjkl@mail.ru",
+    "full_name": "test2",
+    "comment": ""
+  }
+},
+{
+  "model": "client.client",
+  "pk": 12,
+  "fields": {
+    "email": "gbhnj@kjhdkjfh.ru",
+    "full_name": "test3",
+    "comment": ""
+  }
+},
+{
+  "model": "client.client",
+  "pk": 13,
+  "fields": {
+    "email": "fghjk@mail.com",
+    "full_name": "ghjkl;",
+    "comment": ""
+  }
+}
+]

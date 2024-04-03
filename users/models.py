@@ -20,5 +20,10 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     class Meta:
+        permissions = [
+            ('set_active',
+             'Can block and unblock users')
+        ]
         verbose_name = 'пользователь'
         verbose_name_plural = 'пользователи'
+

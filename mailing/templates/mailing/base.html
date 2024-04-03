@@ -24,27 +24,62 @@
           <div class="row">
             <div class="container text-end py-4">
               <h4 class="text-white">Меню</h4>
-              <ul class="list-unstyled">
-                <li><a href='{% url "mail:mails" %}' class="text-white">Все рассылки</a></li>
+              <div class="row justify-content-end">
+                <div class="col-2">
+                  <ul class="list-unstyled">
+                    <li><a href='{% url "mail:mails" %}' class="text-white">Все рассылки</a></li>
+                    {% if perms.users.view_user %}
+                    <li><a href='{% url "user:users" %}' class="text-white">Все пользователи</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'blog:posts' %}" class="text-white">О нас</a></li>
+                    {% if user.is_authenticated %}
+                      <li>
+                        <form action="{% url 'user:logout' %}" method="post">
+                          {% csrf_token %}
+                          <button class="btn btn-link text-white" type="submit">Выйти</button>
+                        </form>
+                      </li>
+                      <li><a href='{% url "user:profile" %}' class="text-white">Профиль</a></li>
+                  {% else %}
+                    <li><div class="mt-4"><a href="{% url 'user:login' %}" class="text-white">Войти</a></div></li>
+                    <li><a href="{% url 'user:register' %}" class="text-white">Регистрация</a></li>
+                  {% endif %}
+                  </ul>
+                </div>
                 {% if user.is_authenticated %}
-                  <li><a href="{% url 'mail:my_mails' %}" class="text-white">Мои рассылки</a></li>
-                  <li><a href="{% url 'client:my_clients' %}" class="text-white">Мои клиенты</a></li>
-                  <li><a href="{% url 'message:all_messages' %}" class="text-white">Сообщения</a></li>
+                  <div class="col-2">
+
+                    <ul class="list-unstyled">
+                      <li><a href="{% url 'mail:my_mails' %}" class="text-white">Мои рассылки</a></li>
+                      <li><a href="{% url 'client:my_clients' %}" class="text-white">Мои клиенты</a></li>
+                      <li><a href="{% url 'message:all_messages' %}" class="text-white">Сообщения</a></li>
+                      <li><a href="{% url 'report:reports' %}" class="text-white">Отчёты</a></li>
+                    </ul>
+                  </div>
                 {% endif %}
-                <li><a href="{% url 'blog:posts' %}" class="text-white">О нас</a></li>
-                {% if user.is_authenticated %}
-                    <li><div class="mt-4">
-                      <form action="{% url 'user:logout' %}" method="post">
-                        {% csrf_token %}
-                        <button class="btn btn-link text-white" type="submit">Выйти</button>
-                      </form>
-                    </div></li>
-                    <li><a href='{% url "user:profile" %}' class="text-white">Профиль</a></li>
-                {% else %}
-                  <li><div class="mt-4"><a href="{% url 'user:login' %}" class="text-white">Войти</a></div></li>
-                  <li><a href="{% url 'user:register' %}" class="text-white">Регистрация</a></li>
-                {% endif %}
-              </ul>
+              </div>
+<!--              <h4 class="text-white">Меню</h4>-->
+<!--              <ul class="list-unstyled">-->
+<!--                <li><a href='{% url "mail:mails" %}' class="text-white">Все рассылки</a></li>-->
+<!--                {% if user.is_authenticated %}-->
+<!--                  <li><a href="{% url 'mail:my_mails' %}" class="text-white">Мои рассылки</a></li>-->
+<!--                  <li><a href="{% url 'client:my_clients' %}" class="text-white">Мои клиенты</a></li>-->
+<!--                  <li><a href="{% url 'message:all_messages' %}" class="text-white">Сообщения</a></li>-->
+<!--                {% endif %}-->
+<!--                <li><a href="{% url 'blog:posts' %}" class="text-white">О нас</a></li>-->
+<!--                {% if user.is_authenticated %}-->
+<!--                    <li><div class="mt-4">-->
+<!--                      <form action="{% url 'user:logout' %}" method="post">-->
+<!--                        {% csrf_token %}-->
+<!--                        <button class="btn btn-link text-white" type="submit">Выйти</button>-->
+<!--                      </form>-->
+<!--                    </div></li>-->
+<!--                    <li><a href='{% url "user:profile" %}' class="text-white">Профиль</a></li>-->
+<!--                {% else %}-->
+<!--                  <li><div class="mt-4"><a href="{% url 'user:login' %}" class="text-white">Войти</a></div></li>-->
+<!--                  <li><a href="{% url 'user:register' %}" class="text-white">Регистрация</a></li>-->
+<!--                {% endif %}-->
+<!--              </ul>-->
             </div>
           </div>
         </div>

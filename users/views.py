@@ -1,9 +1,12 @@
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordChangeView
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView
 
+from mailing.models import Mail
 from users.forms import UserRegisterForm, UserProfileForm
 from users.models import User
 from users.services import *
@@ -34,16 +37,31 @@ def password_changed(request):
     return render(request, 'users/information.html', context)
 
 
-def login_fail(request):
-    """Закрывает доступ к страницам, которые доступны только после авторизации на сайте"""
-    return render(request, 'users/login_fail.html')
-
-
 def wrong_mail(request):
     """Сообщение о неверно введённом адресе почты при восстановлении пароля"""
     context = {'title': 'Пользователь с указанной почтой не найден',
                'text': 'Пожалуйста, проверьте корректность введённой почты, либо зарегистрируйтесь, '
                        'используя указанную почту.'}
+    return render(request, 'users/information.html', context)
+
+
+def login_fail(request):
+    context = {'title': 'Действие недоступно',
+               'text': 'Чтобы пользоваться всеми возможностями сервиса, '
+                       'пожалуйста, войдите в свою учётную запись или зарегистрируйтесь.'}
+    return render(request, 'users/information.html', context)
+
+
+@login_required
+@permission_required('users.set_active')
+def block_user(request, pk):
+    """Блокирует пользователя"""
+    user = User.objects.filter(id=pk).first()
+    user.is_active = False
+    user.save()
+    context = {'title': 'Пользователь заблокирован.',
+               'text': 'Чтобы разблокировать пользователя, '
+                       'пожалуйста, свяжитесь с главным администратором.'}
     return render(request, 'users/information.html', context)
 
 
@@ -123,3 +141,14 @@ class UserPasswordChangeView(PasswordChangeView):
     template_name = 'users/login.html'
     extra_context = {'button': 'Сохранить'}
     success_url = reverse_lazy('users:password_changed')
+
+
+class UserListView(PermissionRequiredMixin, ListView):
+    model = User
+    permission_required = 'users.view_user'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        for user in self.object_list:
+            user.active_mail_amount = Mail.objects.filter(owner=user, status='started').count()
+        return context

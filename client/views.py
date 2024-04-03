@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
@@ -7,7 +8,7 @@ from users.models import User
 
 
 # Create your views here.
-class ClientCreateView(CreateView):
+class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     form_class = ClientForm
     success_url = reverse_lazy('client:my_clients')
@@ -21,11 +22,11 @@ class ClientCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ClientDetailView(DetailView):
+class ClientDetailView(LoginRequiredMixin, DetailView):
     model = Client
 
 
-class ClientListView(ListView):
+class ClientListView(LoginRequiredMixin, ListView):
     model = Client
 
     def get_context_data(self, *args, **kwargs):
@@ -34,14 +35,26 @@ class ClientListView(ListView):
         return context
 
 
-class ClientUpdateView(UpdateView):
+class ClientUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Client
     form_class = ClientForm
+
+    def test_func(self):
+        client = User.objects.get(pk=self.request.user.id).clients.filter(id=self.kwargs['pk'])
+        if client:
+            return True
+        return False
 
     def get_success_url(self):
         return reverse('client:client', args=[self.kwargs.get('pk')])
 
 
-class ClientDeleteView(DeleteView):
+class ClientDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Client
     success_url = reverse_lazy('client:my_clients')
+
+    def test_func(self):
+        client = User.objects.get(pk=self.request.user.id).clients.filter(id=self.kwargs['pk'])
+        if client:
+            return True
+        return False
