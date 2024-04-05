@@ -1,5 +1,6 @@
 from django.db import models
 
+from client.models import Client
 from constants import nullable
 from user_message.models import Message
 from users.models import User
@@ -16,6 +17,7 @@ class Mail(models.Model):
                                  default='daily', verbose_name='периодичность')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='created', verbose_name='статус')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, **nullable, verbose_name='владелец')
+    recipients = models.ManyToManyField(Client, verbose_name='получатели')
 
     def __str__(self):
         return f'{self.name} - c {self.start_time}'

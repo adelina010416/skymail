@@ -27,6 +27,14 @@
         <div class="mt-3">
             <p>Периодичность: {{ object.frequency }}</p>
             <p>Дата и время запуска: {{ object.start_time }}</p>
+            <p>Получатели:</p>
+            <div class="ms-4">
+                <ul class="list-unstyled">
+                    {% for client in clients %}
+                    <li class="list-group-item">{{ client.full_name }} {{ client.email }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>

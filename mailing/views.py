@@ -2,12 +2,14 @@ from apscheduler.jobstores.base import JobLookupError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core import exceptions
+from django.core.cache import cache
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from blog.models import Post
 from client.models import Client
+from config.settings import CACHE_ENABLED
 from config.urls import scheduler
 from mailing.forms import MailForm
 from mailing.models import Mail
@@ -19,10 +21,26 @@ from users.models import User
 # Create your views here.
 def home(request):
     """home page"""
-    context = {'mailing_amount': Mail.objects.count(),
-               'active_mailing_amount': Mail.objects.filter(status='started').count(),
+    if CACHE_ENABLED:
+        key = 'home_page_data'
+        home_page_data = cache.get(key)
+        if home_page_data is None:
+            home_page_data = {
+                'mailing_amount': Mail.objects.count(),
+                'active_mailing_amount': Mail.objects.filter(status='started').count(),
+                'clients_amount': Client.objects.count()
+            }
+            cache.set(key, home_page_data)
+    else:
+        home_page_data = {
+            'mailing_amount': Mail.objects.count(),
+            'active_mailing_amount': Mail.objects.filter(status='started').count(),
+            'clients_amount': Client.objects.count()
+        }
+    context = {'mailing_amount': home_page_data['mailing_amount'],
+               'active_mailing_amount': home_page_data['active_mailing_amount'],
                'object_list': Post.objects.order_by('?')[:3],
-               'clients_amount': Client.objects.count()}
+               'clients_amount': home_page_data['clients_amount']}
     return render(request, 'mailing/home.html', context)
 
 
@@ -40,11 +58,7 @@ def start_mailing(request, pk):
         mail = Mail.objects.filter(id=pk).first()
         mail.status = 'started'
         mail.save()
-        clients = User.objects.get(email=request.user.email).clients.all().values('email')
-        client_emails = []
-        for client in clients:
-            [client_emails.append(i) for i in client.values()]
-        start_scheduler(mail, client_emails, request.user, scheduler)
+        start_scheduler(mail, request.user, scheduler)
         context = {'status': 'запущена'}
         return render(request, 'mailing/mail_started.html', context)
     else:
@@ -102,6 +116,7 @@ class MailDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['clients'] = Mail.objects.get(pk=self.kwargs['pk']).recipients.all()
         if self.object.owner == self.request.user:
             context['is_owner'] = True
         return context

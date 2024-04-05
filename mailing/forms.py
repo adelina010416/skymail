@@ -10,7 +10,7 @@ class StyleFormMixin:
             field.widget.attrs['class'] = 'form-control'
 
 
-class MailForm(StyleFormMixin, forms.ModelForm):
+class MailForm(forms.ModelForm, StyleFormMixin):
     class Meta:
         model = Mail
         exclude = ('status', 'owner',)

@@ -86,8 +86,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mailing_db',
-        'USER': 'postgres',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DATABASES_PASSWORD')
     }
 }
@@ -152,12 +152,12 @@ EMAIL_USE_SSL = True
 
 DATETIME_FORMAT = '%d.%m.%Y %H:%M:%S'
 
-CASHES_ENABLED = True
+CACHE_ENABLED = os.getenv('CACHE_ENABLED')
 
-if CASHES_ENABLED:
+if CACHE_ENABLED:
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": "redis://127.0.0.1:6379",
+            "LOCATION": os.getenv('REDIS'),
         }
     }

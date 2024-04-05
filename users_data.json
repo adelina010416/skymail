@@ -1,0 +1,101 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$J2xpNnTYPu0fZZpEns082a$nxH7gxd2kWuSYCjVTEE2newkhKKC1qKhJXCfU01HFTo=",
+    "last_login": "2024-04-02T16:44:24.176Z",
+    "is_superuser": true,
+    "first_name": "Adelina",
+    "last_name": "Zimina",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-02-27T14:41:44.988Z",
+    "email": "adelinazima@mail.ru",
+    "phone": null,
+    "avatar": "",
+    "country": null,
+    "verified_password": null,
+    "groups": [],
+    "user_permissions": [],
+    "clients": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 23,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$E8s8qLpXytenC9qFSy7v38$GfmTvyWHaiX0VttF27BbJZfBh8dWFPVPezIjTCWP3bI=",
+    "last_login": "2024-04-03T12:04:24Z",
+    "is_superuser": false,
+    "first_name": "апртоьл",
+    "last_name": "зим",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-02-28T17:58:53Z",
+    "email": "zim.adelina@yandex.ru",
+    "phone": "3456789",
+    "avatar": "",
+    "country": "всё ещё говно",
+    "verified_password": "WFbP8zBw",
+    "groups": [],
+    "user_permissions": [],
+    "clients": [
+      1,
+      2,
+      10,
+      11,
+      12,
+      13
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 24,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$84pulJg0OUcYikf9fGHyyX$vAP6j5HR+QnxscgrmVryQJ83TlBKQU3bCh6FGP9HvuQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2024-03-20T22:12:27.627Z",
+    "email": "test88@mail.ru",
+    "phone": null,
+    "avatar": "",
+    "country": null,
+    "verified_password": "qIpUnWtl",
+    "groups": [],
+    "user_permissions": [],
+    "clients": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 26,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$7WS679hr8CYsvlAnH7tjfB$aD/au67mzjH9OmZ0Uvi125GLK9HvEN+jHzQnVTzE2eo=",
+    "last_login": "2024-04-03T12:05:02.555Z",
+    "is_superuser": false,
+    "first_name": "Аделина",
+    "last_name": "Иванова",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-04-02T15:30:21Z",
+    "email": "adelinazimina040299@gmail.com",
+    "phone": "34567890",
+    "avatar": "users/fonstola.ru_136826.jpg",
+    "country": null,
+    "verified_password": "DpPSYIkG",
+    "groups": [
+      1
+    ],
+    "user_permissions": [],
+    "clients": [
+      5
+    ]
+  }
+}
+]
